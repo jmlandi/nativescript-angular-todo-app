@@ -1,3 +1,85 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+Page {
+  background-color: #f0f2f5;
+}
+
+ActionBar {
+  background-color: #1a1a2e;
+  color: #ffffff;
+}
+
+.todo-item {
+  background-color: #ffffff;
+  padding: 14 16;
+  margin: 6 12;
+  border-radius: 10;
+}
+
+.todo-title {
+  font-size: 16;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.todo-status {
+  font-size: 11;
+  font-weight: 700;
+  margin-top: 4;
+  text-transform: uppercase;
+  letter-spacing: 0.5;
+}
+
+.status-pending { color: #e67e22; }
+.status-in_progress { color: #3498db; }
+.status-blocked { color: #e74c3c; }
+.status-completed { color: #27ae60; }
+.status-cancelled { color: #95a5a6; }
+
+.detail-container {
+  padding: 20;
+}
+
+.detail-label {
+  font-size: 11;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5;
+  color: #95a5a6;
+  margin-top: 20;
+  margin-bottom: 4;
+}
+
+.detail-value {
+  font-size: 16;
+  color: #1a1a2e;
+}
+
+.status-row {
+  margin-top: 20;
+}
+
+.status-btn {
+  background-color: #ffffff;
+  color: #1a1a2e;
+  border-radius: 8;
+  border-width: 1;
+  border-color: #dde1e7;
+  padding: 10 0;
+  margin: 4 0;
+  font-size: 14;
+}
+
+.status-btn-active {
+  background-color: #1a1a2e;
+  color: #ffffff;
+  border-color: #1a1a2e;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border-radius: 8;
+  margin-top: 32;
+  padding: 12 0;
+  font-size: 15;
+  font-weight: 600;
+}

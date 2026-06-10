@@ -1,0 +1,27 @@
+<ActionBar [title]="todo?.title || 'Details'">
+  <NavigationButton text="Back" android.systemIcon="ic_menu_back"></NavigationButton>
+</ActionBar>
+
+<ScrollView *ngIf="todo">
+  <StackLayout class="detail-container">
+
+    <Label class="detail-label" text="Description"></Label>
+    <Label class="detail-value" [text]="todo.description || '—'" textWrap="true"></Label>
+
+    <Label class="detail-label" text="Created"></Label>
+    <Label class="detail-value" [text]="todo.createdAt | date:'medium'"></Label>
+
+    <Label class="detail-label" text="Status"></Label>
+    <StackLayout class="status-row">
+      <Button
+        *ngFor="let s of statusOptions"
+        [text]="s"
+        [className]="isActiveStatus(s) ? 'status-btn status-btn-active' : 'status-btn'"
+        (tap)="setStatus(s)"
+      ></Button>
+    </StackLayout>
+
+    <Button text="Delete Task" class="delete-btn" (tap)="deleteTodo()"></Button>
+
+  </StackLayout>
+</ScrollView>

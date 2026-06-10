@@ -1,0 +1,12 @@
+<ActionBar title="To-Do App">
+  <ActionItem text="+" ios.position="right" android.position="actionBar" (tap)="onAdd()"></ActionItem>
+</ActionBar>
+
+<ListView height="100%" separatorColor="transparent" [items]="todos" (itemTap)="onItemTap($event)">
+  <ng-template let-item="item">
+    <StackLayout class="todo-item">
+      <Label class="todo-title" [text]="item.title" textWrap="true"></Label>
+      <Label [className]="getStatusClass(item.status)" [text]="item.status"></Label>
+    </StackLayout>
+  </ng-template>
+</ListView>
