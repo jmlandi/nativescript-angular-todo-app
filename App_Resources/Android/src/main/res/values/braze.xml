@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Replace with your real Android API key from the Braze dashboard. -->
+    <string translatable="false" name="com_braze_api_key">45fd4967-c797-4325-b42f-dd10f8a2b15e</string>
+
+    <!-- US-06 SDK endpoint. -->
+    <string translatable="false" name="com_braze_custom_endpoint">sdk.iad-06.braze.com</string>
+
+    <!-- Validation defaults. -->
+    <bool name="com_braze_enable_location_collection">false</bool>
+    <integer name="com_braze_session_timeout">60</integer>
+</resources>
