@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	package="__PACKAGE__">
 
 	<supports-screens
@@ -38,5 +39,12 @@
 			</intent-filter>
 		</activity>
 		<activity android:name="com.tns.ErrorReportActivity"/>
+
+		<provider
+			android:name="org.nativescript.nstodoapp.braze.BrazeInitProvider"
+			android:authorities="${applicationId}.brazeinit"
+			android:exported="false"
+			android:initOrder="100"
+			tools:ignore="MissingClass" />
 	</application>
 </manifest>

@@ -1,6 +1,9 @@
 // You can add your native dependencies here
 dependencies {
 //  implementation 'androidx.multidex:multidex:2.0.1'
+
+  // Braze Android SDK (base only, no UI). Bump as needed.
+  implementation 'com.braze:android-sdk-base:31.1.0'
 }
 
 android {
@@ -15,8 +18,13 @@ android {
     // Version Information
     versionCode 1
     versionName "1.0.0"
-    
+
     generatedDensities = []
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
   }
 
   aaptOptions {
