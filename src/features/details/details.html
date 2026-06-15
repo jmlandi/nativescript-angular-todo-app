@@ -1,9 +1,11 @@
 <ActionBar [title]="todo?.title || 'details'">
-  <NavigationButton text="back" android.systemIcon="ic_menu_back" (tap)="onBack()"></NavigationButton>
+  <NavigationButton visibility="collapsed"></NavigationButton>
 </ActionBar>
 
 <ScrollView class="page-bg" *ngIf="todo">
   <StackLayout class="detail-container">
+
+    <Button text="← back" class="back-btn" (tap)="onBack()"></Button>
 
     <StackLayout class="glass-panel">
       <Label class="detail-label detail-label-first" text="description"></Label>

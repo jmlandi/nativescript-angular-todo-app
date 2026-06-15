@@ -192,6 +192,20 @@ ListView {
   font-weight: 700;
 }
 
+.back-btn {
+  background-color: #FFF8F0;
+  color: #1B4332;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  margin-bottom: 18;
+  padding: 12 18;
+  horizontal-align: left;
+  font-size: 14;
+  font-weight: 700;
+  font-family: 'Figtree', 'Figtree-Bold';
+}
+
 .save-btn {
   background-color: #FF3D7F;
   color: #FFF8F0;
