@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core'
-import { TodoModel, TodoStatus } from '../models/todo.model'
+import { CommentModel, TodoModel, TodoStatus } from '../models/todo.model'
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
   private nextId = 2
+  private nextCommentId = 1
   private todos: TodoModel[] = []
 
   getTodos(): TodoModel[] {
@@ -21,6 +22,7 @@ export class TodoService {
       description,
       status,
       createdAt: new Date(),
+      comments: [],
     }
     this.todos = [...this.todos, todo]
     return todo
@@ -33,5 +35,32 @@ export class TodoService {
 
   deleteTodo(id: number): void {
     this.todos = this.todos.filter((todo) => todo.id !== id)
+  }
+
+  getComments(todoId: number): CommentModel[] {
+    const todo = this.getTodoById(todoId)
+    if (!todo) return []
+    return [...todo.comments].sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+  }
+
+  addComment(todoId: number, text: string): CommentModel | undefined {
+    const todo = this.getTodoById(todoId)
+    if (!todo) return undefined
+    const trimmed = text.trim()
+    if (!trimmed) return undefined
+    const comment: CommentModel = {
+      id: this.nextCommentId++,
+      todoId,
+      text: trimmed,
+      createdAt: new Date(),
+    }
+    todo.comments = [...todo.comments, comment]
+    return comment
+  }
+
+  deleteComment(todoId: number, commentId: number): void {
+    const todo = this.getTodoById(todoId)
+    if (!todo) return
+    todo.comments = todo.comments.filter((c) => c.id !== commentId)
   }
 }

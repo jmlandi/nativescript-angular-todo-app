@@ -1,15 +1,20 @@
 import { Component, NgZone, NO_ERRORS_SCHEMA, OnInit, inject } from '@angular/core'
-import { NativeScriptCommonModule, PageRoute, RouterExtensions } from '@nativescript/angular'
+import {
+  NativeScriptCommonModule,
+  NativeScriptFormsModule,
+  PageRoute,
+  RouterExtensions,
+} from '@nativescript/angular'
 import { confirm } from '@nativescript/core/ui/dialogs'
 import { switchMap } from 'rxjs'
-import { TodoModel, TodoStatus } from '../../core/models/todo.model'
+import { CommentModel, TodoModel, TodoStatus } from '../../core/models/todo.model'
 import { TodoService } from '../../core/services/todo.service'
 import { FormatStatusPipe } from '../../core/pipes/format-status.pipe'
 
 @Component({
   selector: 'ns-details',
   templateUrl: './details.html',
-  imports: [NativeScriptCommonModule, FormatStatusPipe],
+  imports: [NativeScriptCommonModule, NativeScriptFormsModule, FormatStatusPipe],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class Details implements OnInit {
@@ -21,6 +26,7 @@ export class Details implements OnInit {
   todo: TodoModel | undefined
   original: TodoModel | undefined
   pendingStatus: TodoStatus | undefined
+  newComment = ''
   readonly statusOptions = Object.values(TodoStatus)
 
   ngOnInit(): void {
@@ -51,6 +57,29 @@ export class Details implements OnInit {
 
   get canSave(): boolean {
     return this.isDirty
+  }
+
+  get comments(): CommentModel[] {
+    return this.todo ? this.todoService.getComments(this.todo.id) : []
+  }
+
+  get canAddComment(): boolean {
+    return this.newComment.trim().length > 0
+  }
+
+  addComment(): void {
+    if (!this.todo || !this.canAddComment) return
+    this.zone.run(() => {
+      this.todoService.addComment(this.todo!.id, this.newComment)
+      this.newComment = ''
+    })
+  }
+
+  removeComment(commentId: number): void {
+    if (!this.todo) return
+    this.zone.run(() => {
+      this.todoService.deleteComment(this.todo!.id, commentId)
+    })
   }
 
   save(): void {

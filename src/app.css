@@ -206,6 +206,68 @@ ListView {
   font-family: 'Figtree', 'Figtree-Bold';
 }
 
+.comment-item {
+  background-color: #FFF8F0;
+  border-width: 2;
+  border-color: #1B4332;
+  padding: 12 14;
+  margin-top: 10;
+}
+
+.comment-text {
+  font-size: 15;
+  color: #1B4332;
+  font-family: 'Figtree', 'Figtree-Regular';
+  margin-bottom: 8;
+}
+
+.comment-meta {
+  margin-top: 4;
+}
+
+.comment-date {
+  font-size: 11;
+  color: #2D6A4F;
+  vertical-align: center;
+  font-family: 'Figtree', 'Figtree-SemiBold';
+  letter-spacing: 0.2;
+}
+
+.comment-del {
+  background-color: #1B4332;
+  color: #FF3D7F;
+  border-radius: 0;
+  border-width: 0;
+  padding: 6 12;
+  font-size: 11;
+  font-weight: 700;
+  letter-spacing: 0.3;
+  font-family: 'Figtree', 'Figtree-Bold';
+}
+
+.comment-empty {
+  font-size: 13;
+  color: #74C69D;
+  margin-top: 8;
+  margin-bottom: 8;
+  font-family: 'Figtree', 'Figtree-Regular';
+  font-style: italic;
+}
+
+.comment-add-btn {
+  background-color: #FF3D7F;
+  color: #FFF8F0;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  margin-top: 12;
+  padding: 14 0;
+  font-size: 14;
+  font-weight: 700;
+  letter-spacing: 0.3;
+  font-family: 'Figtree', 'Figtree-Bold';
+}
+
 .save-btn {
   background-color: #FF3D7F;
   color: #FFF8F0;

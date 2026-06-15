@@ -29,6 +29,35 @@
       </StackLayout>
     </StackLayout>
 
+    <StackLayout class="glass-panel">
+      <Label class="detail-label detail-label-first" text="comments"></Label>
+
+      <Label *ngIf="comments.length === 0" class="comment-empty" text="no comments yet" textWrap="true"></Label>
+
+      <StackLayout *ngFor="let c of comments" class="comment-item">
+        <Label class="comment-text" [text]="c.text" textWrap="true"></Label>
+        <GridLayout columns="*, auto" class="comment-meta">
+          <Label col="0" class="comment-date" [text]="c.createdAt | date:'short'"></Label>
+          <Button col="1" text="delete" class="comment-del" (tap)="removeComment(c.id)"></Button>
+        </GridLayout>
+      </StackLayout>
+
+      <Label class="detail-label" text="add comment"></Label>
+      <TextField
+        class="glass-input"
+        hint="write a comment"
+        [(ngModel)]="newComment"
+      ></TextField>
+      <Button
+        text="add comment"
+        class="comment-add-btn"
+        [isEnabled]="canAddComment"
+        [backgroundColor]="canAddComment ? '#FF3D7F' : '#FFD6E0'"
+        [color]="canAddComment ? '#FFF8F0' : '#2D6A4F'"
+        (tap)="addComment()"
+      ></Button>
+    </StackLayout>
+
     <Button
       text="save changes"
       class="save-btn"

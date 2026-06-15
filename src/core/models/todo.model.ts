@@ -4,6 +4,14 @@ export interface TodoModel {
   description: string
   status: TodoStatus
   createdAt: Date
+  comments: CommentModel[]
+}
+
+export interface CommentModel {
+  id: number
+  todoId: number
+  text: string
+  createdAt: Date
 }
 
 export enum TodoStatus {
