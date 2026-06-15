@@ -26,10 +26,17 @@ export class TodoForm {
   title = ''
   description = ''
   status: TodoStatus = TodoStatus.Pending
+  descriptionExpanded = false
   readonly statusOptions = Object.values(TodoStatus)
 
   get canSubmit(): boolean {
     return this.title.trim().length > 0
+  }
+
+  toggleDescriptionExpanded(): void {
+    this.zone.run(() => {
+      this.descriptionExpanded = !this.descriptionExpanded
+    })
   }
 
   setStatus(status: TodoStatus): void {

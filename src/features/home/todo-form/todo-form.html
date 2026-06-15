@@ -1,43 +1,64 @@
 <GridLayout rows="auto, *, auto" class="form-container page-bg">
 
-  <Label row="0" class="form-title" text="create task"></Label>
+  <Label row="0" class="form-title" [text]="descriptionExpanded ? 'edit description' : 'create task'"></Label>
 
   <ScrollView row="1">
     <StackLayout class="form-body">
 
-      <Label class="form-label" text="title *"></Label>
-      <TextField
-        class="glass-input"
-        hint="what needs to be done?"
-        [(ngModel)]="title"
-        returnKeyType="next"
-      ></TextField>
+      <StackLayout *ngIf="!descriptionExpanded">
+        <Label class="form-label" text="title *"></Label>
+        <TextField
+          class="glass-input"
+          hint="what needs to be done?"
+          [(ngModel)]="title"
+          returnKeyType="next"
+        ></TextField>
+      </StackLayout>
 
-      <Label class="form-label" text="description"></Label>
+      <GridLayout columns="*, auto" class="desc-header">
+        <Label col="0" class="form-label" text="description" verticalAlignment="center"></Label>
+        <Button
+          col="1"
+          [text]="descriptionExpanded ? 'collapse' : 'expand'"
+          class="expand-btn"
+          (tap)="toggleDescriptionExpanded()"
+        ></Button>
+      </GridLayout>
       <TextView
-        class="glass-input form-textarea"
+        class="glass-input"
         hint="optional details"
         [(ngModel)]="description"
+        [height]="descriptionExpanded ? 520 : 120"
       ></TextView>
 
-      <Label class="form-label" text="status"></Label>
-      <StackLayout class="status-row">
-        <Button
-          *ngFor="let s of statusOptions; trackBy: trackByStatus"
-          [text]="s | formatStatus"
-          class="status-btn"
-          [backgroundColor]="isActiveStatus(s) ? '#FF3D7F' : '#FFF8F0'"
-          [color]="isActiveStatus(s) ? '#FFF8F0' : '#1B4332'"
-          (tap)="setStatus(s)"
-        ></Button>
+      <StackLayout *ngIf="!descriptionExpanded">
+        <Label class="form-label" text="status"></Label>
+        <StackLayout class="status-row">
+          <Button
+            *ngFor="let s of statusOptions; trackBy: trackByStatus"
+            [text]="s | formatStatus"
+            class="status-btn"
+            [backgroundColor]="isActiveStatus(s) ? '#FF3D7F' : '#FFF8F0'"
+            [color]="isActiveStatus(s) ? '#FFF8F0' : '#1B4332'"
+            (tap)="setStatus(s)"
+          ></Button>
+        </StackLayout>
       </StackLayout>
 
     </StackLayout>
   </ScrollView>
 
-  <GridLayout row="2" columns="*, *" class="form-actions">
+  <GridLayout row="2" columns="*, *" class="form-actions" *ngIf="!descriptionExpanded">
     <Button col="0" text="cancel" class="form-btn form-btn-cancel" (tap)="cancel()"></Button>
     <Button col="1" text="create" class="form-btn form-btn-submit" [isEnabled]="canSubmit" (tap)="submit()"></Button>
   </GridLayout>
+
+  <Button
+    row="2"
+    *ngIf="descriptionExpanded"
+    text="done"
+    class="form-btn form-btn-submit"
+    (tap)="toggleDescriptionExpanded()"
+  ></Button>
 
 </GridLayout>

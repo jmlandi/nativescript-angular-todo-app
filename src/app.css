@@ -268,18 +268,11 @@ ListView {
   font-family: 'Figtree', 'Figtree-Bold';
 }
 
-.save-btn {
-  background-color: #FF3D7F;
-  color: #FFF8F0;
-  border-radius: 0;
-  border-width: 2;
-  border-color: #1B4332;
-  margin-top: 24;
-  padding: 16 0;
-  font-size: 15;
-  font-weight: 700;
-  letter-spacing: 0.3;
-  font-family: 'Figtree', 'Figtree-Bold';
+.detail-actions {
+  padding: 12 18 18 18;
+  background-color: #FFF8F0;
+  box-shadow: 0 -2 10 rgba(27, 67, 50, 0.08);
+  android-elevation: 6;
 }
 
 .delete-btn {
@@ -299,20 +292,20 @@ ListView {
 /* ---------- Create form modal ---------- */
 
 .form-container {
-  padding: 24 20;
+  padding: 0;
 }
 
 .form-title {
   font-size: 26;
   font-weight: 700;
   color: #1B4332;
-  margin-bottom: 20;
+  margin: 24 20 12 20;
   font-family: 'Figtree', 'Figtree-Bold';
   letter-spacing: 0;
 }
 
 .form-body {
-  padding-bottom: 16;
+  padding: 0 20 16 20;
 }
 
 .form-label {
@@ -342,8 +335,35 @@ ListView {
   height: 120;
 }
 
+.desc-header {
+  margin-top: 22;
+  margin-bottom: 10;
+}
+
+.desc-header .form-label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.expand-btn {
+  background-color: #FFF8F0;
+  color: #1B4332;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  padding: 6 14;
+  font-size: 12;
+  font-weight: 700;
+  font-family: 'Figtree', 'Figtree-Bold';
+  letter-spacing: 0.2;
+  vertical-align: center;
+}
+
 .form-actions {
-  margin-top: 20;
+  padding: 12 14 18 14;
+  background-color: #FFF8F0;
+  box-shadow: 0 -2 10 rgba(27, 67, 50, 0.08);
+  android-elevation: 6;
 }
 
 .form-btn {
