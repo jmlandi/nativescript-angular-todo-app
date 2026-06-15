@@ -4,15 +4,7 @@ import { TodoModel, TodoStatus } from '../models/todo.model'
 @Injectable({ providedIn: 'root' })
 export class TodoService {
   private nextId = 2
-  private todos: TodoModel[] = [
-    {
-      id: 1,
-      title: 'Create tasks',
-      description: 'Use the app to manage your tasks',
-      status: TodoStatus.Pending,
-      createdAt: new Date(),
-    },
-  ]
+  private todos: TodoModel[] = []
 
   getTodos(): TodoModel[] {
     return this.todos
@@ -22,15 +14,15 @@ export class TodoService {
     return this.todos.find((todo) => todo.id === id)
   }
 
-  addTodo(title: string, description = ''): TodoModel {
+  addTodo(title: string, description = '', status: TodoStatus = TodoStatus.Pending): TodoModel {
     const todo: TodoModel = {
       id: this.nextId++,
       title,
       description,
-      status: TodoStatus.Pending,
+      status,
       createdAt: new Date(),
     }
-    this.todos.push(todo)
+    this.todos = [...this.todos, todo]
     return todo
   }
 
@@ -40,6 +32,6 @@ export class TodoService {
   }
 
   deleteTodo(id: number): void {
-    this.todos = this.todos.filter((t) => t.id !== id)
+    this.todos = this.todos.filter((todo) => todo.id !== id)
   }
 }

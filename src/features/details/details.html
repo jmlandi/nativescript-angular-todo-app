@@ -1,27 +1,42 @@
-<ActionBar [title]="todo?.title || 'Details'">
-  <NavigationButton text="Back" android.systemIcon="ic_menu_back"></NavigationButton>
+<ActionBar [title]="todo?.title || 'details'">
+  <NavigationButton text="back" android.systemIcon="ic_menu_back" (tap)="onBack()"></NavigationButton>
 </ActionBar>
 
-<ScrollView *ngIf="todo">
+<ScrollView class="page-bg" *ngIf="todo">
   <StackLayout class="detail-container">
 
-    <Label class="detail-label" text="Description"></Label>
-    <Label class="detail-value" [text]="todo.description || '—'" textWrap="true"></Label>
+    <StackLayout class="glass-panel">
+      <Label class="detail-label detail-label-first" text="description"></Label>
+      <Label class="detail-value" [text]="todo.description || '—'" textWrap="true"></Label>
 
-    <Label class="detail-label" text="Created"></Label>
-    <Label class="detail-value" [text]="todo.createdAt | date:'medium'"></Label>
-
-    <Label class="detail-label" text="Status"></Label>
-    <StackLayout class="status-row">
-      <Button
-        *ngFor="let s of statusOptions"
-        [text]="s"
-        [className]="isActiveStatus(s) ? 'status-btn status-btn-active' : 'status-btn'"
-        (tap)="setStatus(s)"
-      ></Button>
+      <Label class="detail-label" text="created"></Label>
+      <Label class="detail-value" [text]="todo.createdAt | date:'medium'"></Label>
     </StackLayout>
 
-    <Button text="Delete Task" class="delete-btn" (tap)="deleteTodo()"></Button>
+    <StackLayout class="glass-panel">
+      <Label class="detail-label detail-label-first" text="status"></Label>
+      <StackLayout class="status-row">
+        <Button
+          *ngFor="let s of statusOptions"
+          [text]="s | formatStatus"
+          class="status-btn"
+          [backgroundColor]="isActiveStatus(s) ? '#FF3D7F' : '#FFF8F0'"
+          [color]="isActiveStatus(s) ? '#FFF8F0' : '#1B4332'"
+          (tap)="setStatus(s)"
+        ></Button>
+      </StackLayout>
+    </StackLayout>
+
+    <Button
+      text="save changes"
+      class="save-btn"
+      [isEnabled]="canSave"
+      [backgroundColor]="canSave ? '#FF3D7F' : '#FFD6E0'"
+      [color]="canSave ? '#FFF8F0' : '#2D6A4F'"
+      (tap)="save()"
+    ></Button>
+
+    <Button text="delete task" class="delete-btn" (tap)="deleteTodo()"></Button>
 
   </StackLayout>
 </ScrollView>

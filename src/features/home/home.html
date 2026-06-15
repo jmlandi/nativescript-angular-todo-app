@@ -1,12 +1,39 @@
-<ActionBar title="To-Do App">
-  <ActionItem text="+" ios.position="right" android.position="actionBar" (tap)="onAdd()"></ActionItem>
+<ActionBar title="to-do app">
+  <ActionItem ios.position="right" android.position="actionBar" (tap)="onAdd()">
+    <StackLayout class="action-plus-wrap" orientation="horizontal">
+      <GridLayout class="glass-plus">
+        <Label
+          class="glass-plus-icon"
+          text="+"
+          horizontalAlignment="center"
+          verticalAlignment="center"
+        ></Label>
+      </GridLayout>
+    </StackLayout>
+  </ActionItem>
 </ActionBar>
 
-<ListView height="100%" separatorColor="transparent" [items]="todos" (itemTap)="onItemTap($event)">
-  <ng-template let-item="item">
-    <StackLayout class="todo-item">
-      <Label class="todo-title" [text]="item.title" textWrap="true"></Label>
-      <Label [className]="getStatusClass(item.status)" [text]="item.status"></Label>
-    </StackLayout>
-  </ng-template>
-</ListView>
+<GridLayout rows="*, auto" class="page-bg">
+  <ListView
+    row="0"
+    [items]="todos"
+    (itemTap)="onItemTap($event)"
+  >
+    <ng-template let-item="item">
+      <StackLayout class="card-wrap" (loaded)="onCardLoaded($event)">
+        <StackLayout class="glass-card">
+          <Label class="todo-title" [text]="item.title" textWrap="true"></Label>
+          <Label [className]="getStatusClass(item.status)" [text]="item.status | formatStatus"></Label>
+        </StackLayout>
+      </StackLayout>
+    </ng-template>
+  </ListView>
+
+  <Button
+    row="1"
+    class="glass-cta"
+    text="create task"
+    (tap)="showForm()"
+    (touch)="onCtaTouch($event)"
+  ></Button>
+</GridLayout>

@@ -1,0 +1,43 @@
+<GridLayout rows="auto, *, auto" class="form-container page-bg">
+
+  <Label row="0" class="form-title" text="create task"></Label>
+
+  <ScrollView row="1">
+    <StackLayout class="form-body">
+
+      <Label class="form-label" text="title *"></Label>
+      <TextField
+        class="glass-input"
+        hint="what needs to be done?"
+        [(ngModel)]="title"
+        returnKeyType="next"
+      ></TextField>
+
+      <Label class="form-label" text="description"></Label>
+      <TextView
+        class="glass-input form-textarea"
+        hint="optional details"
+        [(ngModel)]="description"
+      ></TextView>
+
+      <Label class="form-label" text="status"></Label>
+      <StackLayout class="status-row">
+        <Button
+          *ngFor="let s of statusOptions; trackBy: trackByStatus"
+          [text]="s | formatStatus"
+          class="status-btn"
+          [backgroundColor]="isActiveStatus(s) ? '#FF3D7F' : '#FFF8F0'"
+          [color]="isActiveStatus(s) ? '#FFF8F0' : '#1B4332'"
+          (tap)="setStatus(s)"
+        ></Button>
+      </StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+
+  <GridLayout row="2" columns="*, *" class="form-actions">
+    <Button col="0" text="cancel" class="form-btn form-btn-cancel" (tap)="cancel()"></Button>
+    <Button col="1" text="create" class="form-btn form-btn-submit" [isEnabled]="canSubmit" (tap)="submit()"></Button>
+  </GridLayout>
+
+</GridLayout>

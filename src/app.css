@@ -1,85 +1,300 @@
+/*
+ * Flat palette — solid blocks, no gradients, no blur.
+ *   Forest         #1B4332  primary text / borders / dark accents
+ *   Pine           #2D6A4F  secondary text / status
+ *   Sage           #74C69D  muted accent
+ *   Hot Pink       #FF3D7F  solid highlight background
+ *   Soft Pink      #FFD6E0  secondary highlight
+ *   Cream          #FFF8F0  page background
+ *   Ink            #0D1F17  near-black for max contrast
+ * Font: Figtree.
+ */
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('~/fonts/Figtree-Regular.ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('~/fonts/Figtree-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('~/fonts/Figtree-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('~/fonts/Figtree-Bold.ttf');
+  font-weight: 700;
+}
+
 Page {
-  background-color: #f0f2f5;
+  background-color: #FFF8F0;
+  font-family: 'Figtree', 'Figtree-Regular';
+  color: #1B4332;
+}
+
+.page-bg {
+  background-color: #FFF8F0;
 }
 
 ActionBar {
-  background-color: #1a1a2e;
-  color: #ffffff;
+  background-color: #FFF8F0;
+  color: #1B4332;
+  font-family: 'Figtree', 'Figtree-SemiBold';
+  font-weight: 700;
 }
 
-.todo-item {
-  background-color: #ffffff;
-  padding: 14 16;
-  margin: 6 12;
-  border-radius: 10;
+/* ---------- ActionBar + button ---------- */
+
+.action-plus-wrap {
+  padding-right: 16;
+  padding-left: 8;
+}
+
+.glass-plus {
+  background-color: #FF3D7F;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  width: 40;
+  height: 40;
+}
+
+.glass-plus-icon {
+  color: #FFF8F0;
+  font-size: 24;
+  font-weight: 700;
+  font-family: 'Figtree', 'Figtree-Bold';
+  padding-bottom: 2;
+}
+
+/* ---------- Home: list ---------- */
+
+ListView {
+  background-color: transparent;
+  separator-color: transparent;
+}
+
+.card-wrap {
+  padding: 10 18;
+}
+
+.glass-card {
+  background-color: #FFFFFF;
+  padding: 20 22;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
 }
 
 .todo-title {
-  font-size: 16;
-  font-weight: 600;
-  color: #1a1a2e;
+  font-size: 17;
+  font-weight: 700;
+  color: #1B4332;
+  font-family: 'Figtree', 'Figtree-Bold';
+  margin-bottom: 10;
 }
 
 .todo-status {
   font-size: 11;
   font-weight: 700;
   margin-top: 4;
-  text-transform: uppercase;
-  letter-spacing: 0.5;
+  letter-spacing: 0.3;
+  font-family: 'Figtree', 'Figtree-Bold';
+  padding: 6 10;
 }
 
-.status-pending { color: #e67e22; }
-.status-in_progress { color: #3498db; }
-.status-blocked { color: #e74c3c; }
-.status-completed { color: #27ae60; }
-.status-cancelled { color: #95a5a6; }
+.status-pending     { color: #1B4332; background-color: #FFD6E0; }
+.status-in_progress { color: #FFF8F0; background-color: #FF3D7F; }
+.status-blocked     { color: #FFF8F0; background-color: #1B4332; }
+.status-completed   { color: #1B4332; background-color: #74C69D; }
+.status-cancelled   { color: #2D6A4F; background-color: #FFF8F0; border-width: 1; border-color: #2D6A4F; }
+
+/* ---------- Home: bottom create button ---------- */
+
+.glass-cta {
+  background-color: #FF3D7F;
+  color: #FFF8F0;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  margin: 14 18 20 18;
+  padding: 18 0;
+  font-size: 15;
+  font-weight: 700;
+  letter-spacing: 0.3;
+  font-family: 'Figtree', 'Figtree-Bold';
+}
+
+/* ---------- Details page ---------- */
 
 .detail-container {
-  padding: 20;
+  padding: 20 18;
+}
+
+.glass-panel {
+  background-color: #FFFFFF;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  padding: 20 22;
+  margin-bottom: 18;
 }
 
 .detail-label {
-  font-size: 11;
+  font-size: 12;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5;
-  color: #95a5a6;
-  margin-top: 20;
-  margin-bottom: 4;
+  letter-spacing: 0.2;
+  color: #2D6A4F;
+  margin-top: 14;
+  margin-bottom: 8;
+  font-family: 'Figtree', 'Figtree-Bold';
+}
+
+.detail-label-first {
+  margin-top: 0;
 }
 
 .detail-value {
   font-size: 16;
-  color: #1a1a2e;
+  color: #1B4332;
+  font-family: 'Figtree', 'Figtree-Regular';
+  line-height: 4;
 }
 
 .status-row {
-  margin-top: 20;
+  margin-top: 12;
 }
 
 .status-btn {
-  background-color: #ffffff;
-  color: #1a1a2e;
-  border-radius: 8;
-  border-width: 1;
-  border-color: #dde1e7;
-  padding: 10 0;
-  margin: 4 0;
+  background-color: #FFF8F0;
+  color: #1B4332;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  padding: 14 0;
+  margin: 6 0;
   font-size: 14;
+  font-family: 'Figtree', 'Figtree-SemiBold';
+  font-weight: 600;
+  letter-spacing: 0.1;
 }
 
 .status-btn-active {
-  background-color: #1a1a2e;
-  color: #ffffff;
-  border-color: #1a1a2e;
+  background-color: #FF3D7F;
+  color: #FFF8F0;
+  border-color: #1B4332;
+  border-width: 2;
+  font-weight: 700;
+}
+
+.save-btn {
+  background-color: #FF3D7F;
+  color: #FFF8F0;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  margin-top: 24;
+  padding: 16 0;
+  font-size: 15;
+  font-weight: 700;
+  letter-spacing: 0.3;
+  font-family: 'Figtree', 'Figtree-Bold';
 }
 
 .delete-btn {
-  background-color: #e74c3c;
-  color: #ffffff;
-  border-radius: 8;
-  margin-top: 32;
-  padding: 12 0;
+  background-color: #1B4332;
+  color: #FF3D7F;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  margin-top: 12;
+  padding: 16 0;
   font-size: 15;
+  font-weight: 700;
+  letter-spacing: 0.3;
+  font-family: 'Figtree', 'Figtree-Bold';
+}
+
+/* ---------- Create form modal ---------- */
+
+.form-container {
+  padding: 24 20;
+}
+
+.form-title {
+  font-size: 26;
+  font-weight: 700;
+  color: #1B4332;
+  margin-bottom: 20;
+  font-family: 'Figtree', 'Figtree-Bold';
+  letter-spacing: 0;
+}
+
+.form-body {
+  padding-bottom: 16;
+}
+
+.form-label {
+  font-size: 13;
   font-weight: 600;
+  letter-spacing: 0;
+  color: #2D6A4F;
+  margin-top: 22;
+  margin-bottom: 10;
+  font-family: 'Figtree', 'Figtree-SemiBold';
+}
+
+.glass-input {
+  background-color: #FFFFFF;
+  color: #1B4332;
+  border-radius: 0;
+  border-width: 2;
+  border-color: #1B4332;
+  padding: 16 16;
+  margin-bottom: 4;
+  font-size: 15;
+  font-family: 'Figtree', 'Figtree-Regular';
+  placeholder-color: #74C69D;
+}
+
+.form-textarea {
+  height: 120;
+}
+
+.form-actions {
+  margin-top: 20;
+}
+
+.form-btn {
+  border-radius: 0;
+  padding: 16 0;
+  margin: 6;
+  font-size: 15;
+  font-weight: 700;
+  letter-spacing: 0.2;
+  font-family: 'Figtree', 'Figtree-Bold';
+  border-width: 2;
+}
+
+.form-btn-cancel {
+  background-color: #FFF8F0;
+  color: #1B4332;
+  border-color: #1B4332;
+}
+
+.form-btn-submit {
+  background-color: #FF3D7F;
+  color: #FFF8F0;
+  border-color: #1B4332;
+}
+
+.form-btn-submit[isEnabled="false"] {
+  background-color: #FFD6E0;
+  color: #2D6A4F;
+  border-color: #2D6A4F;
 }
