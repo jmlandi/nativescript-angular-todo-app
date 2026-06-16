@@ -1,22 +1,23 @@
 package org.nativescript.nstodoapp.braze;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.braze.Braze;
-import com.braze.BrazeActivityLifecycleCallbackListener;
 
 /**
- * Auto-runs at process start (before first Activity). Initializes Braze without
- * subclassing Application so NativeScript's com.tns.NativeScriptApplication stays untouched.
+ * Auto-runs at process start. Initializes Braze + wires session open/close to
+ * activity lifecycle. Base-SDK only, no UI module needed.
  */
 public class BrazeInitProvider extends ContentProvider {
     private static final String TAG = "BrazeInit";
@@ -29,11 +30,24 @@ public class BrazeInitProvider extends ContentProvider {
             return false;
         }
         Application app = (Application) ctx.getApplicationContext();
-        app.registerActivityLifecycleCallbacks(
-                new BrazeActivityLifecycleCallbackListener(true, true));
         Braze.getInstance(app);
-        Log.i(TAG, "Braze initialized. sdkVersion=" + Braze.getSdkVersion());
+        app.registerActivityLifecycleCallbacks(new SessionCallbacks());
+        Log.i(TAG, "Braze initialized");
         return true;
+    }
+
+    private static final class SessionCallbacks implements Application.ActivityLifecycleCallbacks {
+        @Override public void onActivityCreated(@NonNull Activity a, @Nullable Bundle b) {}
+        @Override public void onActivityStarted(@NonNull Activity a) {
+            Braze.getInstance(a).openSession(a);
+        }
+        @Override public void onActivityResumed(@NonNull Activity a) {}
+        @Override public void onActivityPaused(@NonNull Activity a) {}
+        @Override public void onActivityStopped(@NonNull Activity a) {
+            Braze.getInstance(a).closeSession(a);
+        }
+        @Override public void onActivitySaveInstanceState(@NonNull Activity a, @NonNull Bundle b) {}
+        @Override public void onActivityDestroyed(@NonNull Activity a) {}
     }
 
     @Nullable @Override
