@@ -1,0 +1,8 @@
+platform :ios, '16.0'
+# Static linkage (not `use_frameworks!`). Dynamic frameworks inject header
+# search paths that break NativeScript's metadata generator on the iOS 26 SDK
+# (system clang modules fail to build). Static keeps Swift pods without that.
+use_frameworks! :linkage => :static
+
+# Braze iOS SDK (Swift). Base only — no in-app message UI module.
+pod 'BrazeKit', '~> 11.0'
